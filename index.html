@@ -50,7 +50,21 @@ body{background:#f4f2ef;font-family:"Proxima Nova",Manrope,Arial,sans-serif}
 .teamlogo,.smalllogo,.smalllogo.home{background:#fff;padding:4px;color:#221515}
 .teamlogo{width:50px;height:50px}.smalllogo{flex:none}
 @media(max-width:720px){.hero{min-height:0;background-position:62% center}.nextgame{max-width:290px}.hawkmark{width:39px;height:39px}}
-.wallet-payment-actions{gap:10px;flex-wrap:wrap}.wallet-payment-options{display:flex;gap:10px;flex-wrap:wrap}.wallet-payment-options .primary,.wallet-payment-options .secondary{min-height:40px}</style></head>
+.wallet-payment-actions{gap:10px;flex-wrap:wrap}.wallet-payment-options{display:flex;gap:10px;flex-wrap:wrap}.wallet-payment-options .primary,.wallet-payment-options .secondary{min-height:40px}
+.modal:has(.seat-stage),.modal:has(.gateway-screen){width:min(800px,100%)}
+.arena-map{max-width:570px;margin:18px auto;padding:15px;border:1px solid #e6dfe0;border-radius:60px;background:#faf6f6}
+.arena-tier{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:5px 0}.arena-sector{display:grid;gap:3px;justify-items:center;min-width:0;padding:7px 2px;border:0;border-radius:7px;background:#f2d7dc;color:#700a13}.arena-sector:hover,.arena-sector:focus-visible{background:#930a16;color:#fff}.arena-sector small{font-size:10px}.arena-upper .arena-sector{background:#e5e0e3;color:#38202a}
+.arena-ice{position:relative;display:grid;place-items:center;min-height:85px;overflow:hidden;background:#fff;color:#64404d;border:2px solid #cbbec5;border-radius:37px}.arena-ice:before{content:"";position:absolute;left:50%;width:1px;height:100%;background:#ba4050}.ice-circle{position:absolute;border:1px solid #ba4050;border-radius:50%;width:45px;height:45px}.arena-ice span{position:relative;background:#fff;padding:3px 8px;font-size:11px;font-weight:800}
+.seat-grid{max-width:520px;margin:16px auto}.seat-rinkside{text-align:center;color:#64515a;background:#efe9ed;border-radius:12px;padding:8px;font-size:10px;letter-spacing:.12em;margin-bottom:12px}
+.seat-row{display:grid;grid-template-columns:18px repeat(10,minmax(0,1fr));gap:4px;margin:4px 0;align-items:center}.seat-row b{font-size:10px;color:#615560}.arena-seat{width:100%;min-height:32px;font-size:11px;font-weight:800;border:1px solid #d8a0ac;border-radius:6px;background:#fcf2f4;color:#720918}.arena-seat:disabled{border-color:#e3e0e4;background:#eeecef;color:#777}.arena-seat.is-selected{background:#930a16;color:#fff;border-color:#930a16}
+.seat-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:#675861}.seat-legend span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;background:#f2d7dc}.seat-legend span:nth-child(2):before{background:#930a16}.seat-legend span:nth-child(3):before{background:#d8d4da}
+.seat-summary{list-style:none;margin:12px 0;padding:0}.seat-summary li{padding:8px 0;display:flex;gap:8px;justify-content:space-between;border-bottom:1px solid #eee;font-size:12px}
+.gateway-screen{max-width:590px;margin:auto;background:#f1f1f3;padding:18px;border-radius:14px;color:#211820}
+.gateway-summary>strong{display:block;font-size:clamp(23px,5vw,37px);line-height:1.25;margin:4px 0 10px}.gateway-summary summary{font-size:12px;cursor:pointer;margin-bottom:12px;color:#624353}
+.gateway-receipt{background:#fff;padding:12px 15px;border-radius:13px;margin:14px 0}.gateway-receipt .receipt-option{margin:0}.gateway-receipt #demoReceiptAddress{padding-top:9px;font-size:13px}.gateway-receipt small{color:#686068}
+.gateway-methods{display:grid;gap:8px}.gateway-method{display:grid;grid-template-columns:35px minmax(0,1fr) 18px;align-items:center;gap:10px;text-align:left;min-height:52px;padding:9px 12px;border:1px solid #e0dce2;border-radius:10px;background:white;color:#242026}.gateway-method:hover{box-shadow:0 0 0 2px #930a1640}.gateway-method strong{font-size:14px}.gateway-method small{display:block;margin-top:3px;font-size:11px}.gateway-icon{display:grid;place-items:center;height:28px;border-radius:7px;background:#f4e9ed;color:#73061a;font-weight:800;font-size:11px}.gateway-arrow{text-align:right;font-size:20px}.gateway-card{background:#930a16;border-color:#930a16;color:#fff}.gateway-alfa{background:#292128;color:#fff;border-color:#292128}.gateway-wallet{border-color:#b35c70;background:#fff6f8}.gateway-podeli .gateway-icon{color:#17131a}.gateway-sber .gateway-icon{background:#e1f7e8;color:#126a3d}.gateway-tpay .gateway-icon{background:#fde884;color:#33250d}
+@media(max-width:480px){.gateway-screen{padding:12px}.arena-sector small{font-size:8px}.arena-map{padding:11px}.arena-seat{min-height:29px;font-size:10px}.seat-row{gap:2px;grid-template-columns:14px repeat(10,minmax(0,1fr))}}
+</style></head>
 <body><div class="shell"><div style="background:#242424;color:#fff;text-align:center;padding:8px 14px;font:600 12px Manrope,Arial,sans-serif">Демонстрационный прототип · без реальных платежей</div>
 <header class="topbar"><a class="brand" href="#"><span class="hawkmark"><img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt=""></span><span>АВАНГАРД<small>ОМСКИЙ ХОККЕЙНЫЙ КЛУБ</small></span></a><nav class="toplinks" aria-label="Навигация"><a href="#tickets" onclick="showView('tickets');return false">БИЛЕТЫ И АБОНЕМЕНТЫ</a><a href="https://hawk.ru/calendar/" target="_blank" rel="noopener">КАЛЕНДАРЬ МАТЧЕЙ</a><a href="https://hawk.ru/news" target="_blank" rel="noopener">НОВОСТИ КЛУБА</a><a href="https://gdrive-arena.ru/" target="_blank" rel="noopener">АРЕНА</a></nav><div class="topright"><button class="iconbtn" title="Уведомления">♧</button><div class="profilepill"><div class="avatar">АК</div><span>Алексей К.<br><small style="color:#aaa;font-weight:500">Личный кабинет⌄</small></span></div></div></header>
 <div class="layout"><aside class="side"><div><div class="eyebrow">Личный кабинет</div><button class="navitem active" data-view="home"><span class="ni">⌂</span>Обзор</button><button class="navitem" data-view="tickets"><span class="ni">▣</span>Мои билеты</button><button class="navitem" data-view="payments"><span class="ni">↔</span>Мои заказы</button><button class="navitem" data-view="abonements"><span class="ni">✦</span>Абонементы</button><button class="navitem" data-view="profile"><span class="ni">◉</span>Профиль</button><div class="eyebrow" style="margin-top:26px">Проектирование</div><button class="navitem" data-view="flow"><span class="ni">⌘</span>Схема флоу</button><button class="navitem" data-view="cjm"><span class="ni">◎</span>CJM</button><div class="sidecard"><strong>ВМЕСТЕ С КОМАНДОЙ</strong><p>Выбирай матч, занимай своё место и поддерживай «Авангард» на арене.</p><button onclick="openCheckout('Авангард — Спартак', '2 декабря, 19:30', '3 200 ₽')">Купить билет →</button></div></div></aside>
@@ -84,37 +98,108 @@ function matchCrest(team) {
   return asset ? `<img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/${asset}" alt="">` : team.charAt(0);
 }
 function renderEvents(){document.getElementById('ticketEvents').innerHTML=events.map(e=>`<article class="event"><div class="eventtop"><div class="eventdate">${e[1].toUpperCase()}</div><div class="eventteams"><span class="eventclub"><i class="smalllogo home"><img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt=""></i>Авангард</span><span class="eventvs">VS</span><span class="eventclub"><i class="smalllogo">${matchCrest(e[0].split(" — ")[1])}</i>${e[0].split(' — ')[1]}</span></div></div><div class="eventbody"><small>G‑Drive Арена · Омск</small><b>Регулярный чемпионат КХЛ</b><div class="eventfoot"><span>от ${e[2]}</span><button class="buybtn" onclick="openCheckout('${e[0]}','${e[1]}','${e[2]}')">КУПИТЬ</button></div></div></article>`).join('')}
+
 const paymentMethods = [
-  {id:'wallet', name:'X‑Wallet', mark:'✦', description:'Открыть кошелёк'},
-  {id:'card', name:'Банковская карта', mark:'▤'},
-  {id:'alfa', name:'Alfa Pay', mark:'<b>А</b>'},
-  {id:'mir', name:'Mir Pay', mark:'МИР'},
-  {id:'sber', name:'SberPay', mark:'✓'}
+  {id:'wallet', name:'X‑Wallet', title:'Оплатить через X‑Wallet', mark:'✦', description:'Открыть кошелёк или выбрать свою карту'},
+  {id:'alfa', name:'Alfa Pay', title:'Оплатить с Alfa Pay', mark:'А', description:'Для клиентов Альфа-Банка'},
+  {id:'card', name:'Банковская карта', title:'Оплатить картой', mark:'▤'},
+  {id:'podeli', name:'Подели', title:'Разделить на 4 платежа', mark:'4'},
+  {id:'sber', name:'SberPay', title:'Оплатить со SberPay', mark:'✓'},
+  {id:'tpay', name:'T‑Pay', title:'Оплатить с T‑Pay', mark:'Т'},
+  {id:'mir', name:'Mir Pay', title:'Оплатить с Mir Pay', mark:'МИР'}
 ];
 let selectedPayment = 'wallet';
-let emailReceipt = false;
+let emailReceipt = true;
+function choosePayment(id) {
+  selectedPayment = id;
+  step = id === 'wallet' ? 3 : 16;
+  renderModal();
+}
+function receiptSummary() {
+  const field = document.getElementById('demoReceiptAddress');
+  if (field) field.hidden = !emailReceipt;
+}
+function rublesWithKopecks(amount) {
+  return new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB'}).format(amount);
+}
 function renderPaymentMethods() {
-  const options = paymentMethods.map(({id, name, mark, description}) =>
-    `<label class="payment-method ${id === 'wallet' ? 'wallet-method' : ''}">
-      <input type="radio" name="payment-method" value="${id}" ${id === selectedPayment ? 'checked' : ''} onchange="selectedPayment=this.value">
-      <span class="method-mark ${id}" aria-hidden="true">${mark}</span>
-      <span><strong>${name}</strong>${description ? `<small>${description}</small>` : ''}</span>
-    </label>`).join('');
-  return `<h3>Выберите способ оплаты</h3><p class="help">Проверьте сумму и выберите удобный способ.</p>
-    ${ob()}
-    <fieldset class="payment-methods" aria-label="Способ оплаты">${options}</fieldset>
-    <label class="receipt-option"><input type="checkbox" ${emailReceipt ? 'checked' : ''} onchange="emailReceipt=this.checked">Получить чек на электронную почту</label>
-    <div class="modalactions"><button class="secondary" onclick="step=1;renderModal()">← НАЗАД</button>
-      <button class="primary" onclick="step=selectedPayment==='wallet'?3:16;renderModal()">ПРОДОЛЖИТЬ →</button></div>`;
+  const options = paymentMethods.map(method => `
+    <button type="button" class="gateway-method gateway-${method.id}" onclick="choosePayment('${method.id}')">
+      <span class="gateway-icon" aria-hidden="true">${method.mark}</span>
+      <span><strong>${method.title}</strong>${method.id==='podeli'
+        ? `<small>4 платежа по ${rublesWithKopecks(orderAmount()/4)}</small>`
+        : method.description?`<small>${method.description}</small>`:''}</span>
+      <span class="gateway-arrow" aria-hidden="true">›</span>
+    </button>`).join('');
+  return `<div class="gateway-screen">
+    <div class="gateway-summary"><h3>Оплата заказа</h3><strong>${rublesWithKopecks(orderAmount())}</strong>
+      <details><summary>Детали заказа</summary>${ob()}${renderSeatSummary()}</details></div>
+    <div class="gateway-receipt"><label class="receipt-option"><input type="checkbox" ${emailReceipt?'checked':''} onchange="emailReceipt=this.checked;receiptSummary()">Получить чек на e-mail</label>
+      <div id="demoReceiptAddress" ${emailReceipt?'':'hidden'}><small>Электронная почта для демо</small><div>fan@example.com</div></div></div>
+    <div class="gateway-methods" aria-label="Способы оплаты">${options}</div>
+    <div class="modalactions"><button class="secondary" onclick="step=1;renderModal()">← К ЗАКАЗУ</button></div>
+  </div>`;
 }
 function renderAlternativePayment() {
   const method = paymentMethods.find(item => item.id === selectedPayment);
-  const message = emailReceipt ? 'Вы выбрали получение чека на электронную почту.' : '';
-  return `<h3>${method.name}</h3><p class="help">Демонстрационная оплата. ${message}</p>${ob()}
+  let details = '<p class="help">Подтвердите оплату в демонстрационном сценарии.</p>';
+  if (method.id === 'card') details = '<div class="notice">Тестовая карта •• 4242</div>';
+  if (method.id === 'podeli') details = `<div class="notice">Демо-график: сегодня, через 14, 28 и 42 дня. Каждый платёж — ${rublesWithKopecks(orderAmount()/4)}.</div>`;
+  return `<h3>${method.name}</h3>${ob()}${details}
     <div class="modalactions"><button class="secondary" onclick="step=2;renderModal()">← К СПОСОБАМ ОПЛАТЫ</button>
-      <button class="primary" onclick="renderResult(true)">ОПЛАТИТЬ ${order.price}</button></div>`;
+      <button class="primary" onclick="renderResult(true)">ПОДТВЕРДИТЬ В ДЕМО →</button></div>`;
 }
 
+const arenaSectors = [
+  {id:'204',price:1190}, {id:'205',price:1490}, {id:'206',price:1490}, {id:'207',price:1190},
+  {id:'103',price:1790}, {id:'104',price:2190}, {id:'107',price:2190}, {id:'108',price:1990},
+  {id:'115',price:1790}, {id:'114',price:2190}, {id:'112',price:2190}, {id:'111',price:1990}
+];
+let currentSector = null;
+function selectSector(id) {
+  currentSector = arenaSectors.find(sector => sector.id === id);
+  step = 27;
+  renderModal();
+}
+function renderSectorMap() {
+  const tier = (from,to) => arenaSectors.slice(from,to).map(sector => `<button type="button" class="arena-sector" onclick="selectSector('${sector.id}')" aria-label="Сектор ${sector.id}, ${formatRubles(sector.price)}"><b>${sector.id}</b><small>${formatRubles(sector.price)}</small></button>`).join('');
+  return `<div class="seat-stage"><h3>Выберите сектор</h3><p class="help">${order.name} · ${order.date} · G‑Drive Арена</p>
+    <div class="arena-map" aria-label="Демонстрационная схема арены">
+      <div class="arena-tier arena-upper">${tier(0,4)}</div><div class="arena-tier">${tier(4,8)}</div>
+      <div class="arena-ice"><div class="ice-circle"></div><span>G‑Drive Арена</span></div>
+      <div class="arena-tier">${tier(8,12)}</div>
+    </div>
+    ${order.seats.length?`<div class="modalactions"><button class="secondary" onclick="closeCheckout()">ЗАКРЫТЬ</button><button class="primary" onclick="step=1;renderModal()">К ЗАКАЗУ · ${order.price} →</button></div>`:'<p class="formnote">Нажмите на сектор, чтобы посмотреть места.</p>'}</div>`;
+}
+function renderSectorSeats() {
+  const rows = Array.from({length:5},(_,index) => {
+    const row=index+3;
+    const buttons=Array.from({length:10},(_,seatIndex)=>{
+      const number=seatIndex+1;
+      const occupied=(row*11+number+Number(currentSector.id))%7===0;
+      const selected=order.seats.some(seat=>seat.sector===currentSector.id && seat.row===row && seat.number===number);
+      return `<button type="button" class="arena-seat${selected?' is-selected':''}" aria-pressed="${selected}" aria-label="Ряд ${row}, место ${number}${occupied?', занято':''}" ${occupied?'disabled':''} onclick="toggleArenaSeat(${row},${number})">${number}</button>`;
+    }).join('');
+    return `<div class="seat-row"><b aria-hidden="true">${row}</b>${buttons}</div>`;
+  }).join('');
+  return `<div class="seat-stage"><h3>Сектор ${currentSector.id}</h3><p class="help">${order.name} · ${formatRubles(currentSector.price)} за место · до 4 билетов</p>
+    <div class="seat-grid"><div class="seat-rinkside">СТОРОНА ЛЬДА</div>${rows}</div>
+    <div class="seat-legend"><span>Свободно</span><span>Выбрано</span><span>Занято</span></div>
+    ${renderSeatSummary()}<div class="modalactions"><button class="secondary" onclick="step=26;renderModal()">← К СЕКТОРАМ</button><button class="primary" ${order.seats.length?'':'disabled'} onclick="step=1;renderModal()">К ЗАКАЗУ · ${order.price} →</button></div></div>`;
+}
+function toggleArenaSeat(row,number) {
+  const existing=order.seats.findIndex(seat=>seat.sector===currentSector.id && seat.row===row && seat.number===number);
+  if(existing>=0) order.seats.splice(existing,1);
+  else if(order.seats.length<4) order.seats.push({sector:currentSector.id,row,number,price:currentSector.price});
+  else {toast('Можно выбрать до 4 мест');return;}
+  order.price=formatRubles(order.seats.reduce((sum,seat)=>sum+seat.price,0));
+  renderModal(true);
+  document.querySelector(`.arena-seat[aria-label="Ряд ${row}, место ${number}"]`)?.focus({preventScroll:true});
+}
+function renderSeatSummary() {
+  if (!order.seats?.length) return '';
+  return `<ul class="seat-summary">${order.seats.map(seat=>`<li><span>Сектор ${seat.sector} · ряд ${seat.row} · место ${seat.number}</span><strong>${formatRubles(seat.price)}</strong></li>`).join('')}</ul>`;
+}
 const activeWalletCards = [
   {lastFour:'4567', balance:10000},
   {lastFour:'3456', balance:100}
@@ -166,11 +251,16 @@ function renderWalletPaymentChoice(backStep) {
       </div>
     </div>`;
 }
-function openCheckout(name,date,price){order={name,date,price};selectedPayment='wallet';emailReceipt=false;step=1;customer='new';hasCard=true;selectedWalletCard=null;topUpAmount=0;topUpBank='';walletBalance=0;document.getElementById('checkoutModal').classList.add('open');renderModal()}
+function openCheckout(name,date,price){order={name,date,price:formatRubles(0),seats:[]};currentSector=null;selectedPayment='wallet';emailReceipt=true;step=26;customer='new';hasCard=true;selectedWalletCard=null;topUpAmount=0;topUpBank='';walletBalance=0;document.getElementById('checkoutModal').classList.add('open');renderModal()}
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
-function ob(){return `<div class="orderbox"><span><b>${order.name}</b><br><small>${order.date} · G‑Drive Арена · 2 билета</small></span><strong>${order.price}</strong></div>`}
-function renderModal(){let b=document.getElementById('modalBody');document.querySelector('.stepsbar').innerHTML=[1,2,3].map(n=>`<i class="stepdot ${n<=Math.min(step,3)?'on':''}"></i>`).join('');
-if(step===1)b.innerHTML=`<h3>Проверьте заказ</h3><p class="help">Перед переходом к оплате проверьте детали заказа.</p>${ob()}<div class="modalactions"><button class="secondary" onclick="closeCheckout()">ОТМЕНА</button><button class="primary" onclick="step=2;renderModal()">ПЕРЕЙТИ К ОПЛАТЕ →</button></div>`;
+function ob(){return `<div class="orderbox"><span><b>${order.name}</b><br><small>${order.date} · G‑Drive Арена · Мест: ${order.seats?.length || 0}</small></span><strong>${order.price}</strong></div>`}
+function renderModal(keepScroll=false){let b=document.getElementById('modalBody');
+const progress=step===26?1:step===27?2:step===1?3:4;
+document.querySelector('.stepsbar').innerHTML=[1,2,3,4].map(n=>`<i class="stepdot ${n<=progress?'on':''}"></i>`).join('');
+if(!keepScroll)b.closest('.modal').scrollTop=0;
+if(step===26)b.innerHTML=renderSectorMap();
+else if(step===27)b.innerHTML=renderSectorSeats();
+else if(step===1)b.innerHTML=`<h3>Проверьте заказ</h3><p class="help">Перед оплатой проверьте выбранные места и итоговую сумму.</p>${ob()}${renderSeatSummary()}<div class="modalactions"><button class="secondary" onclick="step=27;renderModal()">← К МЕСТАМ</button><button class="primary" onclick="step=2;renderModal()">ПЕРЕЙТИ К ОПЛАТЕ →</button></div>`;
 else if(step===2)b.innerHTML=renderPaymentMethods();
 else if(step===16)b.innerHTML=renderAlternativePayment();
 else if(step===3)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Кошелёк X‑Wallet</h3>${ob()}<div class="modalactions"><button class="secondary" onclick="step=2;renderModal()">← НАЗАД</button><button class="primary" onclick="step=4;renderModal()">ОТКРЫТЬ КОШЕЛЁК →</button></div>`;
