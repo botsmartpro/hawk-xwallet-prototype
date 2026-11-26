@@ -147,6 +147,53 @@ body{background:#f0f1f2;color:#101010;font-family:Manrope,Arial,sans-serif}
 @media(max-width:1050px){.events.fixture-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.event,.eventtop{min-height:330px}.eventtop{padding:22px 23px 85px}.eventclub{font-size:20px}.smalllogo{width:64px;height:64px}.eventfoot span{top:-305px}}
 @media(max-width:700px){.topbar{height:68px;padding:0 16px}.toplinks{display:none}.layout{padding:10px 14px 30px}.side{margin-bottom:18px}.side>div{flex-wrap:nowrap;overflow:auto;padding-bottom:4px}.navitem{font-size:10px;padding:8px 10px}.navitem.active{padding:7px 9px}.fixture-toolbar{gap:12px;margin-bottom:20px}.opponent-select{height:48px;min-width:0;width:46%;padding-left:9px}.opponent-select select{font-size:14px}.league-tabs{gap:6px}.league-tab{padding:7px 12px;font-size:15px}.fixture-intro{margin-bottom:14px}.fixture-intro .title{font-size:30px}.events.fixture-grid{grid-template-columns:1fr;gap:16px}.event,.eventtop{min-height:300px}.eventtop{padding:22px 22px 82px}.eventdate{font-size:14px}.eventteams{margin-top:31px}.eventclub{font-size:20px}.smalllogo{width:60px;height:60px}.eventbody{padding:10px 18px 20px}.buybtn,.vipbtn{height:47px;font-size:15px}.eventfoot span{top:-274px;font-size:11px;padding:6px 15px}.pagehead{display:flex}.sectionhead{margin-top:20px}.panel{padding:16px}.profilepill span{display:none}}
 .shell>div:first-child{display:none}
+
+/* Realistic G-Drive Arena scheme and checkout stages */
+.arena-modal{width:min(1420px,96vw);max-height:96vh;border-radius:30px}
+.seats-modal,.order-modal{width:min(1000px,94vw);max-height:94vh}
+.arena-modal .modalbody{padding:18px clamp(20px,3vw,46px) 28px}
+.arena-modal .stepsbar{padding:12px 18px 0}
+.arena-matchbar{position:relative;display:flex;align-items:center;justify-content:center;gap:18px;min-height:84px;margin:0 0 18px;padding:10px 18px;background:#f7f7f7;border-radius:15px}
+.arena-back{position:absolute;left:clamp(20px,3vw,46px);border:0;background:transparent;color:#333;font-size:17px;font-weight:800}
+.arena-match-team{display:flex;flex-direction:column;gap:2px;min-width:110px}
+.arena-match-team strong{font-size:17px}.arena-match-team small{font-size:12px;color:#999}
+.arena-match-crest{width:48px;height:48px;display:grid;place-items:center}.arena-match-crest .club-crest{max-width:100%;max-height:100%}
+.arena-match-crest.home{object-fit:contain}.arena-matchbar time{font-size:15px;color:#888;padding:0 6px}
+.arena-stage-title{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.arena-stage-title h3{font:600 28px "Bebas Neue",Oswald,sans-serif;text-transform:uppercase;margin:0}
+.arena-stage-title .help{font-size:13px;margin:4px 0 0}
+.arena-stage-chip{font-size:10px;letter-spacing:.1em;font-weight:800;color:#666;border:1px solid #ddd;border-radius:20px;padding:8px 12px}
+.arena-map-viewport{max-width:1250px;margin:0 auto;overflow:auto}
+.arena-svg{width:100%;height:auto;max-height:58vh;min-width:760px;display:block}
+.arena-svg-sector{cursor:default;outline:none}
+.arena-svg-sector path{stroke:#fff;stroke-width:4;transition:fill .15s,opacity .15s}
+.arena-svg-sector.is-muted path{fill:#66676b}
+.arena-svg-sector.is-opponent path{fill:#c9c9cc}
+.arena-svg-sector.is-available{cursor:pointer}
+.arena-svg-sector.is-available path{fill:#ed101b}
+.arena-svg-sector.is-available:hover path,.arena-svg-sector.is-available:focus path{fill:#a90012;stroke:#fff;stroke-width:5}
+.svg-sector-label,.svg-sector-price{fill:#fff;text-anchor:middle;pointer-events:none;font-family:Oswald,Arial,sans-serif;font-size:17px;font-weight:700}
+.svg-sector-price{font-size:10px;font-weight:500}
+.is-opponent .svg-sector-label{fill:#222}
+.arena-sponsor{fill:#fff;text-anchor:middle;font:700 10px Oswald,Arial,sans-serif;letter-spacing:.04em}
+.arena-rink-label{fill:#4d5154;text-anchor:middle;font:800 14px Oswald,Arial,sans-serif}
+.arena-rink-sub{fill:#9a9a9a;text-anchor:middle;font:500 9px Manrope,Arial,sans-serif;letter-spacing:.14em}
+.arena-map-legend{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;color:#777;font-size:11px;margin:4px auto 8px}
+.arena-map-legend span{display:flex;align-items:center;gap:7px}
+.arena-map-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.legend-available{background:#ed101b}.legend-unavailable{background:#68696c}
+.arena-stage>.formnote{text-align:center;margin:8px auto 0;font-size:12px}
+.seats-modal .modalbody,.order-modal .modalbody{padding:24px clamp(20px,4vw,48px) 32px}
+.seats-modal .seat-grid{max-width:760px;margin:24px auto}
+.seats-modal .arena-seat{min-height:42px;border-radius:8px;font-size:13px}
+.seats-modal .seat-rinkside{padding:12px;font-size:11px;border-radius:22px;background:#f0eeee}
+.seats-modal .arena-stage>h3{font-size:29px}
+.order-modal .modalbody>h3{font-size:30px}
+.order-modal .help{font-size:14px}
+.order-modal .orderbox{padding:18px 21px;border-radius:18px;font-size:14px}
+.order-modal .orderbox strong{font-size:24px}
+.order-modal .seat-summary li{font-size:14px;padding:13px 4px}
+@media(max-width:720px){.arena-modal,.seats-modal,.order-modal{width:100%;max-height:96vh;border-radius:22px}.arena-modal .modalbody,.seats-modal .modalbody,.order-modal .modalbody{padding:16px 16px 24px}.arena-matchbar{min-height:70px;gap:8px;padding:8px 4px;margin-bottom:16px}.arena-back{left:16px;top:72px;font-size:13px}.arena-back span{display:none}.arena-match-team{min-width:70px}.arena-match-team strong{font-size:12px}.arena-match-team small{font-size:10px}.arena-match-crest{width:34px;height:34px}.arena-matchbar time{font-size:12px}.arena-stage-chip{display:none}.arena-stage-title h3{font-size:25px}.arena-stage-title .help{font-size:11px}.arena-svg{min-width:760px;max-height:none}.arena-map-legend{justify-content:flex-start;font-size:10px}.seats-modal .arena-seat{min-height:34px}.order-modal .orderbox{padding:14px;font-size:12px}.order-modal .orderbox strong{font-size:19px}}
 </style></head>
 <body><div class="shell"><div style="background:#242424;color:#fff;text-align:center;padding:8px 14px;font:600 12px Manrope,Arial,sans-serif">Демонстрационный прототип · без реальных платежей</div>
 <header class="topbar"><a class="brand" href="#"><span class="hawkmark"><img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt=""></span><span>АВАНГАРД<small>ОМСКИЙ ХОККЕЙНЫЙ КЛУБ</small></span></a><nav class="toplinks" aria-label="Навигация"><a href="#tickets" onclick="showView('tickets');return false">БИЛЕТЫ И АБОНЕМЕНТЫ</a><a href="https://hawk.ru/calendar/" target="_blank" rel="noopener">КАЛЕНДАРЬ МАТЧЕЙ</a><a href="https://hawk.ru/news" target="_blank" rel="noopener">НОВОСТИ КЛУБА</a><a href="https://gdrive-arena.ru/" target="_blank" rel="noopener">АРЕНА</a></nav><div class="topright"><button class="iconbtn" title="Уведомления">♧</button><div class="profilepill"><div class="avatar">АК</div><span>Алексей К.<br><small style="color:#aaa;font-weight:500">Личный кабинет⌄</small></span></div></div></header>
@@ -243,15 +290,28 @@ function selectSector(id) {
   step = 27;
   renderModal();
 }
-function renderSectorMap() {
-  const tier = (from,to) => arenaSectors.slice(from,to).map(sector => `<button type="button" class="arena-sector" onclick="selectSector('${sector.id}')" aria-label="Сектор ${sector.id}, ${formatRubles(sector.price)}"><b>${sector.id}</b><small>${formatRubles(sector.price)}</small></button>`).join('');
-  return `<div class="seat-stage"><h3>Выберите сектор</h3><p class="help">${order.name} · ${order.date} · G‑Drive Арена</p>
-    <div class="arena-map" aria-label="Демонстрационная схема арены">
-      <div class="arena-tier arena-upper">${tier(0,4)}</div><div class="arena-tier">${tier(4,8)}</div>
-      <div class="arena-ice"><div class="ice-circle"></div><span>G‑Drive Арена</span></div>
-      <div class="arena-tier">${tier(8,12)}</div>
-    </div>
-    ${order.seats.length?`<div class="modalactions"><button class="secondary" onclick="closeCheckout()">ЗАКРЫТЬ</button><button class="primary" onclick="step=1;renderModal()">К ЗАКАЗУ · ${order.price} →</button></div>`:'<p class="formnote">Нажмите на сектор, чтобы посмотреть места.</p>'}</div>`;
+function renderSectorMap(){
+  const teams=(order.name||'Авангард — Соперник').split(' — '),opponent=teams[1]||'Соперник',crest=matchCrest(opponent);
+  const available=new Map(arenaSectors.map(sector=>[sector.id,sector]));
+  const polar=(rx,ry,angle)=>{const rad=angle*Math.PI/180;return [500+rx*Math.cos(rad),320+ry*Math.sin(rad)]};
+  const ringPath=(rx,ry,innerRx,innerRy,start,end)=>{
+    const a=polar(rx,ry,start),b=polar(rx,ry,end),c=polar(innerRx,innerRy,end),d=polar(innerRx,innerRy,start),large=end-start>180?1:0;
+    return 'M '+a[0].toFixed(1)+' '+a[1].toFixed(1)+' A '+rx+' '+ry+' 0 '+large+' 1 '+b[0].toFixed(1)+' '+b[1].toFixed(1)+' L '+c[0].toFixed(1)+' '+c[1].toFixed(1)+' A '+innerRx+' '+innerRy+' 0 '+large+' 0 '+d[0].toFixed(1)+' '+d[1].toFixed(1)+' Z';
+  };
+  const group=(ids,rx,ry,innerRx,innerRy)=>ids.map((id,index)=>{
+    const sector=available.get(id),start=-90+index*(360/ids.length)+.65,end=-90+(index+1)*(360/ids.length)-.65,mid=(start+end)/2,label=polar((rx+innerRx)/2,(ry+innerRy)/2,mid);
+    const active=!!sector,klass='arena-svg-sector '+(active?'is-available':'is-muted')+(id==='203'?' is-opponent':'');
+    const price=active?'<text class="svg-sector-price" x="'+label[0].toFixed(1)+'" y="'+(label[1]+15).toFixed(1)+'">'+sector.price.toLocaleString('ru-RU')+' ₽</text>':'';
+    const handler=active?`role="button" tabindex="0" aria-label="Сектор ${id}, ${formatRubles(sector.price)}" onclick="selectSector('${id}')" onkeydown="if(event.key==='Enter'||event.key===' '){selectSector('${id}')}"`:`aria-label="Сектор ${id}" aria-disabled="true"`;
+    return '<g class="'+klass+'" '+handler+'><path d="'+ringPath(rx,ry,innerRx,innerRy,start,end)+'"></path><text class="svg-sector-label" x="'+label[0].toFixed(1)+'" y="'+(label[1]-3).toFixed(1)+'">'+id+'</text>'+price+'</g>';
+  }).join('');
+  const upper=Array.from({length:20},(_,i)=>String(201+i)),lower=Array.from({length:16},(_,i)=>String(101+i));
+  return '<div class="seat-stage arena-stage"><div class="arena-matchbar"><button type="button" class="arena-back" onclick="closeCheckout()">‹ <span>НАЗАД</span></button><div class="arena-match-team"><strong>Авангард</strong><small>Омск</small></div><img class="arena-match-crest home" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt="Авангард"><time>'+order.date.split(',').slice(-1)[0].trim()+'</time><div class="arena-match-crest">'+crest+'</div><div class="arena-match-team"><strong>'+opponent+'</strong><small>Матч КХЛ</small></div></div><div class="arena-stage-title"><div><h3>Выберите сектор</h3><p class="help">'+order.name+' · '+order.date+' · G‑Drive Арена</p></div><span class="arena-stage-chip">КХЛ · ДОМАШНИЙ МАТЧ</span></div><div class="arena-map-viewport"><svg class="arena-svg" viewBox="0 0 1000 640" role="img" aria-label="Схема G‑Drive Арены. Красные сектора доступны для выбора.">'+
+    '<ellipse cx="500" cy="320" rx="452" ry="290" fill="#faf9f8" stroke="#b8b7b6" stroke-width="3"></ellipse>'+group(upper,438,270,360,220)+
+    '<ellipse cx="500" cy="320" rx="351" ry="211" fill="none" stroke="#e4dfd7" stroke-width="17"></ellipse>'+group(lower,338,198,236,126)+
+    '<rect x="365" y="218" width="270" height="20" rx="3" fill="#8b806c"></rect><text class="arena-sponsor" x="500" y="232">FONBET · БИЗНЕС-КЛУБ</text>'+
+    '<rect x="392" y="402" width="216" height="20" rx="3" fill="#9b3100"></rect><text class="arena-sponsor" x="500" y="416">G‑DRIVE · БИЗНЕС-КЛУБ</text>'+
+    '<rect x="322" y="250" width="356" height="140" rx="68" fill="#fff" stroke="#909294" stroke-width="3"></rect><path d="M500 252v136 M322 320h356" stroke="#b8b9bb" stroke-width="2"></path><circle cx="500" cy="320" r="30" fill="none" stroke="#b8b9bb" stroke-width="2"></circle><circle cx="365" cy="288" r="15" fill="none" stroke="#aaa" stroke-width="2"></circle><circle cx="365" cy="352" r="15" fill="none" stroke="#aaa" stroke-width="2"></circle><circle cx="635" cy="288" r="15" fill="none" stroke="#aaa" stroke-width="2"></circle><circle cx="635" cy="352" r="15" fill="none" stroke="#aaa" stroke-width="2"></circle><text class="arena-rink-label" x="500" y="325">G‑DRIVE АРЕНА</text><text class="arena-rink-sub" x="500" y="344">ОМСК · ЛЁД</text></svg></div><div class="arena-map-legend"><span><i class="legend-available"></i>Доступно · нажмите на сектор</span><span><i class="legend-unavailable"></i>Сектор без демо-цены</span></div>'+(order.seats.length?'<div class="modalactions"><button class="secondary" onclick="closeCheckout()">ЗАКРЫТЬ</button><button class="primary" onclick="step=1;renderModal()">К ЗАКАЗУ · '+order.price+' →</button></div>':'<p class="formnote">Выберите один из выделенных секторов — на следующем шаге откроется схема мест.</p>')+'</div>';
 }
 function renderSectorSeats() {
   const rows = Array.from({length:5},(_,index) => {
@@ -337,6 +397,7 @@ function openCheckout(name,date,price){order={name,date,price:formatRubles(0),se
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
 function ob(){return `<div class="orderbox"><span><b>${order.name}</b><br><small>${order.date} · G‑Drive Арена · Мест: ${order.seats?.length || 0}</small></span><strong>${order.price}</strong></div>`}
 function renderModal(keepScroll=false){let b=document.getElementById('modalBody');
+const modal=b.closest('.modal');modal.classList.toggle('arena-modal',step===26);modal.classList.toggle('seats-modal',step===27);modal.classList.toggle('order-modal',step===1);
 const progress=step===26?1:step===27?2:step===1?3:4;
 document.querySelector('.stepsbar').innerHTML=[1,2,3,4].map(n=>`<i class="stepdot ${n<=progress?'on':''}"></i>`).join('');
 if(!keepScroll)b.closest('.modal').scrollTop=0;
