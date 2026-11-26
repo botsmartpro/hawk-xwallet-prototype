@@ -66,6 +66,15 @@ body{background:#f4f2ef;font-family:"Proxima Nova",Manrope,Arial,sans-serif}
 @media(max-width:480px){.gateway-screen{padding:12px}.arena-sector small{font-size:8px}.arena-map{padding:11px}.arena-seat{min-height:29px;font-size:10px}.seat-row{gap:2px;grid-template-columns:14px repeat(10,minmax(0,1fr))}}
 
 /* Match-ticket catalog, following the supplied Hawk.ru reference. */
+.crest-pair{display:flex;align-items:center;flex:none}
+.crest-pair .smalllogo{width:78px;height:78px;border-radius:50%;padding:14px;margin-left:-12px}
+.crest-pair .smalllogo:first-child{margin-left:0}
+.teamnames{display:flex;flex-direction:column;gap:13px;margin-left:17px;min-width:0}
+.teamnames b{font:800 clamp(17px,1.5vw,25px) Oswald,Arial,sans-serif;line-height:1.1;white-space:nowrap}
+.eventteams{justify-content:flex-start;align-items:center}
+@media(max-width:1050px){.crest-pair .smalllogo{width:64px;height:64px;padding:11px}.teamnames{margin-left:13px;gap:10px}}
+@media(max-width:700px){.crest-pair .smalllogo{width:60px;height:60px;padding:10px}.teamnames b{font-size:19px}.teamnames{margin-left:12px}}
+
 :root{--red:#e10600;--red2:#bf0904;--ink:#101010;--muted:#757575;--line:#e1e1e1;--paper:#f0f1f2;--white:#fff}
 body{background:#f0f1f2;color:#101010;font-family:Manrope,Arial,sans-serif}
 .topbar{height:84px;background:#f0f1f2;color:#111;border-bottom:0;padding:0 clamp(20px,5.5vw,110px);position:relative}
@@ -167,7 +176,7 @@ function matchCrest(team) {
   const asset = teamEmblems[team];
   return asset ? `<img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/${asset}" alt="">` : team.charAt(0);
 }
-function renderEvents(){const cards=events.map((e,i)=>{const opponent=e[0].split(' — ')[1];const date=e[1].replace(', ', ' · ').toUpperCase();return `<article class="event ${i<2?'photo':''}" data-opponent="${opponent}"><span class="event-badge">Р</span><div class="eventtop"><div class="eventdate">${date}</div><div class="eventteams"><span class="eventclub"><i class="smalllogo home"><img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt=""></i>Авангард</span><span class="eventclub"><i class="smalllogo">${matchCrest(opponent)}</i>${opponent}</span></div></div><div class="eventbody"><div class="eventfoot"><span>От ${e[2]}</span><button class="buybtn" onclick="openCheckout('${e[0]}','${e[1]}','${e[2]}')">КУПИТЬ</button><button class="vipbtn" onclick="toast('VIP-сценарий не задан в демонстрационных материалах')">VIP</button></div></div></article>`}).join('');['ticketEvents','homeEvents'].forEach(id=>{const target=document.getElementById(id);if(target)target.innerHTML=cards});filterFixtureCards()}
+function renderEvents(){const cards=events.map((e,i)=>{const opponent=e[0].split(' — ')[1];const date=e[1].toUpperCase();return `<article class="event ${i<2?'photo':''}" data-opponent="${opponent}"><span class="event-badge">Р</span><div class="eventtop"><div class="eventdate">${date}</div><div class="eventteams"><div class="crest-pair"><i class="smalllogo home"><img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt=""></i><i class="smalllogo">${matchCrest(opponent)}</i></div><div class="teamnames"><b>АВАНГАРД</b><b>${opponent.toUpperCase()}</b></div></div></div><div class="eventbody"><div class="eventfoot"><span>От ${e[2]}</span><button class="buybtn" onclick="openCheckout('${e[0]}','${e[1]}','${e[2]}')">КУПИТЬ</button><button class="vipbtn" onclick="toast('VIP-сценарий не задан в демонстрационных материалах')">VIP</button></div></div></article>`}).join('');['ticketEvents','homeEvents'].forEach(id=>{const target=document.getElementById(id);if(target)target.innerHTML=cards});['ticketEvents','homeEvents'].forEach(id=>filterFixtureCards(id))}
 function filterFixtureCards(containerId){const filterId=containerId==='ticketEvents'?'opponentFilterTickets':'opponentFilter';const selected=document.getElementById(filterId)?.value||'all';document.querySelectorAll('#'+containerId+' .event').forEach(card=>card.style.display=selected==='all'||card.dataset.opponent===selected?'':'none')}
 function setLeague(league){document.querySelectorAll('.league-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.league===league));if(league!=='КХЛ')toast('В демо добавлены матчи КХЛ')}
 
