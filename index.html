@@ -21,6 +21,15 @@
 .method-mark.mir{color:#08734d}.method-mark.sber{color:#087347}
 .receipt-option{display:flex;align-items:center;gap:10px;margin:14px 0;color:#4f4f4f;font-weight:600;width:fit-content;cursor:pointer}
 @media(max-width:480px){.payment-methods{grid-template-columns:1fr}.payment-method{min-height:48px;padding:9px 12px}}
+
+.wallet-card-list{width:min(100%,440px);display:grid;gap:12px;border:0;padding:0;margin:20px 0 12px;min-width:0}
+.wallet-card-option{display:flex;align-items:center;gap:12px;cursor:pointer}
+.wallet-card-option input{flex:none;width:20px;height:20px;margin:0;accent-color:var(--red);cursor:pointer}
+.wallet-card-panel{flex:1;min-width:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid #e8e8e8;border-radius:12px;background:#f4f4f4;box-shadow:0 3px 5px #16161612}
+.wallet-card-option input:checked+.wallet-card-panel{border-color:var(--red);background:#fff6f6}
+.wallet-card-name{display:block;color:#555;font-size:12px}.wallet-card-balance{display:block;font-size:16px;font-weight:800;margin-top:3px}
+.wallet-card-face{display:flex;align-items:flex-end;justify-content:flex-start;min-width:74px;height:42px;border-radius:7px;padding:7px;background:var(--red);color:#fff;font-size:11px;font-weight:800;white-space:nowrap}
+.wallet-card-issue{margin-top:9px}
 </style></head>
 <body><div class="shell"><div style="background:#242424;color:#fff;text-align:center;padding:8px 14px;font:600 12px Manrope,Arial,sans-serif">Демонстрационный прототип · без реальных платежей</div>
 <header class="topbar"><a class="brand" href="#"><span class="hawkmark">А</span><span>АВАНГАРД<small>ОМСКИЙ ХОККЕЙНЫЙ КЛУБ</small></span></a><nav class="toplinks"><a href="#">КЛУБ</a><a href="#">КОМАНДА</a><a href="#">ЧЕМПИОНАТ</a><a href="#">НОВОСТИ</a><a href="#">АРЕНА</a></nav><div class="topright"><button class="iconbtn" title="Уведомления">♧</button><div class="profilepill"><div class="avatar">АК</div><span>Алексей К.<br><small style="color:#aaa;font-weight:500">Личный кабинет⌄</small></span></div></div></header>
@@ -80,7 +89,35 @@ function renderAlternativePayment() {
     <div class="modalactions"><button class="secondary" onclick="step=2;renderModal()">← К СПОСОБАМ ОПЛАТЫ</button>
       <button class="primary" onclick="renderResult(true)">ОПЛАТИТЬ ${order.price}</button></div>`;
 }
-function openCheckout(name,date,price){order={name,date,price};selectedPayment='wallet';emailReceipt=false;step=1;customer='new';hasCard=true;topUpAmount=0;topUpBank='';walletBalance=0;document.getElementById('checkoutModal').classList.add('open');renderModal()}
+
+const activeWalletCards = [
+  {lastFour:'4567', balance:10000},
+  {lastFour:'3456', balance:100}
+];
+let selectedWalletCard = null;
+function renderCardSelection() {
+  const options = activeWalletCards.map(card => `
+    <label class="wallet-card-option">
+      <input type="radio" name="wallet-card" value="${card.lastFour}" ${selectedWalletCard?.lastFour===card.lastFour?'checked':''}
+        onchange="selectWalletCard(this.value)">
+      <span class="wallet-card-panel">
+        <span><span class="wallet-card-name">Альфа‑Карта</span><strong class="wallet-card-balance">${formatRubles(card.balance)}</strong></span>
+        <span class="wallet-card-face">•• ${card.lastFour}</span>
+      </span>
+    </label>`).join('');
+  return `<div class="walletbrand"><i>А</i> X‑WALLET · ДЕЙСТВУЮЩИЙ КЛИЕНТ</div>
+    <h3>Выберите карту</h3><p class="help">Мы добавим к кошельку выбранную действующую дебетовую карту.</p>${ob()}
+    <fieldset class="wallet-card-list" aria-label="Действующие дебетовые карты">${options}</fieldset>
+    <button type="button" class="secondary wallet-card-issue" onclick="selectedWalletCard=null;hasCard=false;step=6;renderModal()">НЕТ ПОДХОДЯЩЕЙ КАРТЫ</button>
+    <div class="modalactions"><button class="secondary" onclick="step=5;renderModal()">← НАЗАД</button>
+      <button class="primary" id="confirmWalletCard" ${selectedWalletCard?'':'disabled'} onclick="hasCard=true;step=10;renderModal()">ДОБАВИТЬ К КОШЕЛЬКУ →</button></div>`;
+}
+function selectWalletCard(lastFour) {
+  selectedWalletCard = activeWalletCards.find(card => card.lastFour === lastFour) ?? null;
+  document.getElementById('confirmWalletCard').disabled = !selectedWalletCard;
+}
+
+function openCheckout(name,date,price){order={name,date,price};selectedPayment='wallet';emailReceipt=false;step=1;customer='new';hasCard=true;selectedWalletCard=null;topUpAmount=0;topUpBank='';walletBalance=0;document.getElementById('checkoutModal').classList.add('open');renderModal()}
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
 function ob(){return `<div class="orderbox"><span><b>${order.name}</b><br><small>${order.date} · G‑Drive Арена · 2 билета</small></span><strong>${order.price}</strong></div>`}
 function renderModal(){let b=document.getElementById('modalBody');document.querySelector('.stepsbar').innerHTML=[1,2,3].map(n=>`<i class="stepdot ${n<=Math.min(step,3)?'on':''}"></i>`).join('');
@@ -91,10 +128,9 @@ else if(step===3)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div
 else if(step===4)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Введите номер телефона</h3><p class="help">Банк определит, новый вы клиент или действующий.</p>${ob()}<div class="field"><label>Мобильный телефон</label><input value="+7 900 000-00-00"></div><div class="modalactions"><button class="secondary" onclick="step=3;renderModal()">← НАЗАД</button><button class="primary" onclick="step=5;renderModal()">ПРОДОЛЖИТЬ →</button></div>`;
 else if(step===5)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Банк определяет клиента</h3><p class="help">Для просмотра схемы выберите ветку. В рабочем процессе тип клиента определяет банк.</p>${ob()}<div class="walletchoice"><div class="choice" onclick="customer='new';step=6;renderModal()"><span class="radio"></span><span><strong>Новый клиент</strong><small>Анкета → SMS-код → открытие кошелька</small></span></div><div class="choice" onclick="customer='existing';step=7;renderModal()"><span class="radio"></span><span><strong>Действующий клиент</strong><small>Выбор действующей карты или выпуск новой</small></span></div></div><div class="modalactions"><button class="secondary" onclick="step=4;renderModal()">← НАЗАД</button><span class="secure">Выбор ветки — демонстрационный</span></div>`;
 else if(step===6)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET · ${customer==='new'?'НОВЫЙ КЛИЕНТ':'ВЫПУСК КАРТЫ'}</div><h3>${customer==='new'?'Заполните заявку и откройте кошелёк':'Откройте новую карту'}</h3><p class="help">${customer==='new'?'MVP в схеме предназначен только для граждан РФ.':'Для действующего клиента без карты в схеме указан выпуск пластиковой карты (MVP).'}</p><div class="formgrid"><div class="field"><label>Пол</label><select><option>Выберите</option><option>Мужской</option><option>Женский</option></select></div><div class="field"><label>Вы гражданин РФ?</label><select id="rf"><option value="yes">Да</option><option value="no">Нет</option></select></div><div class="field"><label>Фамилия</label><input placeholder="Фамилия"></div><div class="field"><label>Имя</label><input placeholder="Имя"></div><div class="field"><label>Отчество</label><input placeholder="Отчество"></div><div class="field"><label>Дата рождения</label><input placeholder="ДД.ММ.ГГГГ"></div><div class="field full"><label>Мобильный телефон</label><input value="+7 900 000-00-00"></div></div><p class="formnote">Подтверждаю ознакомление с Памяткой об ЭДС, согласие на выпуск предоплаченной карты и заказ расчётной карты, согласие с условиями и договором.</p><div class="modalactions"><button class="secondary" onclick="step=5;renderModal()">← НАЗАД</button><button class="primary" onclick="if(customer==='existing'||document.getElementById('rf').value==='yes'){step=8;renderModal()}else toast('В файле сценарий MVP указан для граждан РФ')">ПРОДОЛЖИТЬ →</button></div>`;
-else if(step===7)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET · ДЕЙСТВУЮЩИЙ КЛИЕНТ</div><h3>Выберите сценарий</h3><p class="help">Для добавления к кошельку подходит только действующая дебетовая карта.</p>${ob()}<div class="choice" onclick="hasCard=true;step=9;renderModal()"><span class="radio"></span><span><strong>У меня есть действующая карта</strong><small>Выбрать и добавить карту к кошельку</small></span></div><div class="choice" onclick="hasCard=false;step=6;renderModal()"><span class="radio"></span><span><strong>У меня нет карты</strong><small>Открыть новую карту</small></span></div><div class="modalactions"><button class="secondary" onclick="step=5;renderModal()">← НАЗАД</button></div>`;
+else if(step===7)b.innerHTML=renderCardSelection();
 else if(step===8)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Введите код из SMS</h3><p class="help">Код отправлен на указанный номер. Запросить повторно можно через 00:25.</p>${ob()}<div class="field"><label>Код из SMS</label><input inputmode="numeric" maxlength="4" placeholder="••••"></div><div class="modalactions"><button class="secondary" onclick="step=6;renderModal()">← НАЗАД</button><button class="primary" onclick="step=10;renderModal()">ПОДТВЕРДИТЬ →</button></div>`;
-else if(step===9)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Выберите действующую карту</h3><p class="help">Можно добавить только действующую дебетовую карту.</p>${ob()}<div class="choice selected"><span class="radio"></span><span class="payicon">💳</span><span><strong>Альфа-карта ·· 4567</strong><small>Действующая дебетовая карта</small></span></div><div class="modalactions"><button class="secondary" onclick="step=7;renderModal()">← НАЗАД</button><button class="primary" onclick="step=10;renderModal()">ДОБАВИТЬ К КОШЕЛЬКУ →</button></div>`;
-else if(step===10)b.innerHTML=customer==='existing'?`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Подтвердите вход</h3><p class="help">Используйте секретный код для входа в приложение Альфа-Банка на этом или другом устройстве.</p>${ob()}<div class="field"><label>Секретный код</label><input type="password" placeholder="Введите код"></div><p class="formnote">Другие способы входа: по номеру карты.</p><div class="modalactions"><button class="secondary" onclick="step=9;renderModal()">← НАЗАД</button><button class="primary" onclick="if(hasCard){startTopUp(10)}else{step=14;renderModal()}">ПОДТВЕРДИТЬ →</button></div>`:`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Кошелёк открыт!</h3><p class="help">Пополните кошелёк, чтобы оплатить билеты.</p>${ob()}<div class="notice success">Лимит: до 15 000 ₽ за покупку · до 40 000 ₽ в месяц.</div><div class="modalactions"><button class="secondary" onclick="closeCheckout()">ЗАКРЫТЬ</button><button class="primary" onclick="startTopUp(10)">ПОПОЛНИТЬ КОШЕЛЁК →</button></div>`;
+else if(step===10)b.innerHTML=customer==='existing'?`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Подтвердите вход</h3>${hasCard&&selectedWalletCard?`<div class="notice">Выбрана Альфа‑Карта •• ${selectedWalletCard.lastFour}</div>`:'' }<p class="help">Используйте секретный код для входа в приложение Альфа-Банка на этом или другом устройстве.</p>${ob()}<div class="field"><label>Секретный код</label><input type="password" placeholder="Введите код"></div><p class="formnote">Другие способы входа: по номеру карты.</p><div class="modalactions"><button class="secondary" onclick="step=hasCard?7:8;renderModal()">← НАЗАД</button><button class="primary" onclick="if(hasCard){startTopUp(10)}else{step=14;renderModal()}">ПОДТВЕРДИТЬ →</button></div>`:`<div class="walletbrand"><i>А</i> X‑WALLET</div><h3>Кошелёк открыт!</h3><p class="help">Пополните кошелёк, чтобы оплатить билеты.</p>${ob()}<div class="notice success">Лимит: до 15 000 ₽ за покупку · до 40 000 ₽ в месяц.</div><div class="modalactions"><button class="secondary" onclick="closeCheckout()">ЗАКРЫТЬ</button><button class="primary" onclick="startTopUp(10)">ПОПОЛНИТЬ КОШЕЛЁК →</button></div>`;
 else if(step===11){renderWallet();return}
 else if(step===12)b.innerHTML=renderTopUp();
 else if(step===13)b.innerHTML=`<div class="walletbrand"><i>А</i> X‑WALLET</div>
@@ -175,7 +211,7 @@ function simulateWalletCredit() {
 }
 function renderWallet() {
   document.getElementById('modalBody').innerHTML = `<h3>Корзина</h3><p class="help">Кошелёк привязан. Проверьте заказ и оплатите билеты.</p>${ob()}
-    <div class="choice selected"><span class="radio"></span><span><strong>X‑Wallet</strong><small>На кошельке ${formatRubles(walletBalance)}</small></span></div>
+    <div class="choice selected"><span class="radio"></span><span><strong>X‑Wallet</strong><small>На кошельке ${formatRubles(walletBalance)}${selectedWalletCard?` · Альфа‑Карта •• ${selectedWalletCard.lastFour}`:''}</small></span></div>
     <div class="modalactions"><button class="secondary" onclick="closeCheckout()">ЗАКРЫТЬ</button>
     <button class="primary" onclick="renderResult(true)">ОПЛАТИТЬ ${order.price}</button></div>
     <p style="text-align:right;margin:12px 0 0"><button class="secondary" onclick="renderResult(false)">ДЕМО: ПОКАЗАТЬ ОШИБКУ ОПЛАТЫ</button></p>`;
