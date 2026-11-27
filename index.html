@@ -261,6 +261,59 @@ body{background:#f0f1f2;color:#101010;font-family:Manrope,Arial,sans-serif}
 .order-modal .seat-summary li{border-color:#e6e6e6;color:#333}
 .order-modal .primary,.payment-modal .primary{background:#ed1c24;color:#fff}
 @media(max-width:720px){.modal.payment-modal{width:100%}.payment-modal .modalbody{padding:14px 14px 24px}.payment-modal .gateway-screen{padding:16px;border-radius:16px}.payment-modal .gateway-summary h3{font-size:26px}.payment-modal .gateway-method{min-height:58px;padding:10px 12px}.payment-modal .gateway-method strong{font-size:14px}.payment-modal .gateway-method small{font-size:11px}}
+.modal.payment-modal{width:min(860px,100%);max-height:94vh}
+.payment-modal .modalbody{padding:0;background:#e8edf0}
+.payment-modal .stepsbar{display:none}
+.payment-screen{font:16px system-ui,sans-serif;color:#132435;background:#e8edf0;--red:#f02e22;--muted:#596773;--white:#fff;border-top:4px solid var(--red);padding:22px clamp(16px,5vw,48px) 34px}
+.payment-screen [hidden]{display:none}
+.payment-screen button:focus-visible,.payment-screen summary:focus-visible{outline:2px solid #455e72;outline-offset:3px}
+.payment-screen .pay-order{margin-bottom:20px}
+.payment-screen .pay-order summary{width:fit-content;margin-left:auto}
+.payment-screen .pay-order .orderbox{margin-top:10px}
+.payment-screen footer{margin-top:20px}
+.payment-screen footer button{border:1px solid #9fadb8;border-radius:10px;padding:9px 13px;background:transparent;color:#263845}
+@media(max-width:460px){.payment-screen header{margin-bottom:20px}.payment-screen .pay-summary{align-items:start;flex-direction:column;gap:8px}.payment-screen .pay-receipt{padding:17px}}
+.payment-screen button,.payment-screen input{font:inherit}
+.payment-screen button{cursor:pointer}
+.payment-screen header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:25px}
+.payment-screen .pay-brand{display:flex;gap:12px;align-items:center;font-weight:760}
+.payment-screen .pay-crest{display:grid;place-items:center;width:44px;height:44px;background:#202124;color:white;border-radius:12px;font-weight:900;font-style:italic;border-bottom:4px solid var(--red)}
+.payment-screen .pay-demo{background:#dbe4ea;padding:6px 10px;border-radius:6px;color:#354a58;font-size:.8rem;font-weight:650}
+.payment-screen .pay-summary{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:24px}
+.payment-screen .pay-summary .pay-label{font-size:.95rem;color:var(--muted);margin:0 0 5px;font-weight:650}
+.payment-screen .pay-sum{font-size:clamp(34px,6vw,54px);font-weight:790;line-height:1.1;letter-spacing:-.04em}
+.payment-screen .pay-sum span{color:#697686}
+.payment-screen details{font-size:.9rem;color:#425766}
+.payment-screen summary{cursor:pointer}
+.payment-screen details p{margin:8px 0 0}
+.payment-screen .pay-receipt,.payment-screen .pay-installments{background:var(--white);border-radius:22px;padding:22px 24px}
+.payment-screen .pay-receipt{margin-bottom:20px}
+.payment-screen .pay-receipt label{display:flex;gap:11px;align-items:center;font-size:1.06rem}
+.payment-screen .pay-receipt input{width:20px;height:20px;accent-color:var(--red);margin:0}
+.payment-screen .pay-email{margin-top:17px;padding:0 0 9px;border-bottom:1px solid #aebbc3}
+.payment-screen .pay-email small{display:block;color:var(--muted);margin-bottom:3px}
+.payment-screen .pay-email strong{font-weight:570}
+.payment-screen .pay-methods{display:grid;gap:13px}
+.payment-screen .pay-method{width:100%;min-height:62px;border:1px solid transparent;border-radius:16px;background:#fff;color:#142231;font-size:clamp(16px,3vw,21px);font-weight:690;padding:12px 14px;text-align:center}
+.payment-screen .pay-method:hover{outline:2px solid #8494a4;outline-offset:2px}
+.payment-screen .pay-method small{display:block;font-size:.76em;margin-top:3px;font-weight:450}
+.payment-screen .pay-alfa{background:#202124;color:white}
+.payment-screen .pay-alfa small{color:#cbd0d6}
+.payment-screen .pay-card{background:#df251c;color:white}
+.payment-screen .pay-wallet{border:1px solid #c7d3da}
+.payment-screen .pay-wallet small{color:var(--muted)}
+.payment-screen .pay-badge{display:inline-block;padding:3px 9px;border-radius:6px;font-weight:780;font-size:.82em;white-space:nowrap}
+.payment-screen .pay-badge-alfa{background:var(--red);color:#fff;margin-left:4px}
+.payment-screen .pay-badge-sber{background:#d4f7e8;color:#076141}
+.payment-screen .pay-badge-t{background:#ffe078;color:#242424}
+.payment-screen .pay-badge-mir{background:#e5f0f6;color:#245271}
+.payment-screen .pay-installments{padding:15px}
+.payment-screen .pay-schedule{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 6px 12px;color:var(--muted);font-size:clamp(.70rem,2.3vw,.88rem)}
+.payment-screen .pay-schedule span{border-bottom:3px solid #dce4e9;padding-bottom:7px}
+.payment-screen .pay-schedule span:first-child{border-color:var(--red);color:#172635}
+.payment-screen .pay-installments .pay-method{border-color:#dce4e9}
+.payment-screen .pay-installments b{color:#b7231b}
+.payment-screen .pay-method-outlined{border-color:#aebbc3}
 </style></head>
 <body><div class="shell"><div style="background:#242424;color:#fff;text-align:center;padding:8px 14px;font:600 12px Manrope,Arial,sans-serif">Демонстрационный прототип · без реальных платежей</div>
 <header class="topbar"><a class="brand" href="#"><span class="hawkmark"><img class="club-crest" src="https://s3.dtln.ru/storage-hawk/teams/Avangard_logo_2026.png" alt=""></span><span>АВАНГАРД<small>ОМСКИЙ ХОККЕЙНЫЙ КЛУБ</small></span></a><nav class="toplinks" aria-label="Навигация"><a href="#tickets" onclick="showView('tickets');return false">БИЛЕТЫ И АБОНЕМЕНТЫ</a><a href="https://hawk.ru/calendar/" target="_blank" rel="noopener">КАЛЕНДАРЬ МАТЧЕЙ</a><a href="https://hawk.ru/news" target="_blank" rel="noopener">НОВОСТИ КЛУБА</a><a href="https://gdrive-arena.ru/" target="_blank" rel="noopener">АРЕНА</a></nav><div class="topright"><button class="iconbtn" title="Уведомления">♧</button><div class="profilepill"><div class="avatar">АК</div><span>Алексей К.<br><small style="color:#aaa;font-weight:500">Личный кабинет⌄</small></span></div></div></header>
@@ -319,21 +372,23 @@ function rublesWithKopecks(amount) {
   return new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB'}).format(amount);
 }
 function renderPaymentMethods() {
-  const options = paymentMethods.map(method => `
-    <button type="button" class="gateway-method gateway-${method.id}" onclick="choosePayment('${method.id}')">
-      <span class="gateway-icon" aria-hidden="true">${method.mark}</span>
-      <span><strong>${method.title}</strong>${method.id==='podeli'
-        ? `<small>4 платежа по ${rublesWithKopecks(orderAmount()/4)}</small>`
-        : method.description?`<small>${method.description}</small>`:''}</span>
-      <span class="gateway-arrow" aria-hidden="true">›</span>
-    </button>`).join('');
-  return `<div class="gateway-screen">
-    <div class="gateway-summary"><h3>Оплата заказа</h3><strong>${rublesWithKopecks(orderAmount())}</strong>
-      <details><summary>Детали заказа</summary>${ob()}${renderSeatSummary()}</details></div>
-    <div class="gateway-receipt"><label class="receipt-option"><input type="checkbox" ${emailReceipt?'checked':''} onchange="emailReceipt=this.checked;receiptSummary()">Получить чек на e-mail</label>
-      <div id="demoReceiptAddress" ${emailReceipt?'':'hidden'}><small>Электронная почта для демо</small><div>fan@example.com</div></div></div>
-    <div class="gateway-methods" aria-label="Способы оплаты">${options}</div>
-    <div class="modalactions"><button class="secondary" onclick="step=1;renderModal()">← К ЗАКАЗУ</button></div>
+  const [amount, kopecks] = rublesWithKopecks(orderAmount()).split(',');
+  return `<div class="payment-screen">
+    <header><div class="pay-brand"><span class="pay-crest" aria-hidden="true">А</span> Билеты «Авангарда»</div><span class="pay-demo">Демо</span></header>
+    <section class="pay-summary" aria-label="Сумма заказа"><div><div class="pay-label">Оплата заказа</div><div class="pay-sum">${amount}<span>,${kopecks}</span></div></div></section>
+        <details class="pay-order"><summary>Детали заказа</summary>${ob()}${renderSeatSummary()}</details>
+    <section class="pay-receipt" aria-label="Электронный чек"><label><input type="checkbox" ${emailReceipt ? 'checked' : ''} onchange="emailReceipt=this.checked;receiptSummary()"> Получить чек на e-mail</label><div class="pay-email" id="demoReceiptAddress" ${emailReceipt ? '' : 'hidden'}><small>Электронная почта</small><strong>fan@example.com</strong></div></section>
+    <section class="pay-methods" aria-label="Способы оплаты">
+    <button class="pay-method pay-alfa" type="button" onclick="choosePayment('alfa')">Оплатить с <span class="pay-badge pay-badge-alfa">Alfa Pay</span><small>Для клиентов Альфа-Банка</small></button>
+    <button class="pay-method pay-card" type="button" onclick="choosePayment('card')">Оплатить картой</button>
+    <button class="pay-method pay-wallet" type="button" onclick="choosePayment('wallet')">Оплатить через X‑Wallet<small>Открыть кошелёк или выбрать свою карту</small></button>
+    <div class="pay-installments"><div class="pay-schedule" aria-label="График четырёх платежей"><span>Сегодня</span><span>Через 2 недели</span><span>Через 4 недели</span><span>Через 6 недель</span></div>
+    <button class="pay-method" type="button" onclick="choosePayment('podeli')"><b>Подели</b> · 4 платежа по ${rublesWithKopecks(orderAmount() / 4)}</button></div>
+    <button class="pay-method pay-method-outlined" type="button" onclick="choosePayment('sber')">Оплатить со <span class="pay-badge pay-badge-sber">SberPay</span></button>
+    <button class="pay-method pay-method-outlined" type="button" onclick="choosePayment('tpay')">Оплатить с <span class="pay-badge pay-badge-t">T‑Pay</span></button>
+    <button class="pay-method pay-method-outlined" type="button" onclick="choosePayment('mir')">Оплатить с <span class="pay-badge pay-badge-mir">Mir Pay</span></button>
+    </section>
+    <footer><button type="button" onclick="step=1;renderModal()">← К заказу</button></footer>
   </div>`;
 }
 function renderAlternativePayment() {
